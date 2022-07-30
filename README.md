@@ -1,16 +1,18 @@
-# QuizUP
+<h1>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/51513908/181935053-a2c0f6f3-5c10-40ea-907b-4cf4e8638f09.png" alt="Logo" width="190" height="190">
+  <br>QuizUP
+</h1>
+  <p align="center">
+    Made with &hearts; with Flutter
+    <br />
+    </p>
+</p>
 
-A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p align ="center">
+  <h3>Preview</h3>
+  <img src="https://user-images.githubusercontent.com/51513908/181934557-fcd86ce1-9475-4306-a260-7e85db983717.jpg" alt="demo">
+ </p>
+  <br/>
+  <p align = "center">Show Some &#128147; by &#11088; the Repo! </p>
