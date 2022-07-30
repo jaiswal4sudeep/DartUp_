@@ -1,7 +1,7 @@
 <h1>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/51513908/181935053-a2c0f6f3-5c10-40ea-907b-4cf4e8638f09.png" alt="Logo" width="190" height="190">
-  <br>QuizUP
+  <br>DartUP
 </h1>
   <p align="center">
     Made with &hearts; with Flutter
