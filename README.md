@@ -1,4 +1,4 @@
-# QuizApp
+# QuizUP
 
 A new Flutter project.
 
