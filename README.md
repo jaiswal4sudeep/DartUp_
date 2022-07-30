@@ -1,4 +1,4 @@
-# task
+# QuizApp
 
 A new Flutter project.
 
