@@ -8,8 +8,14 @@ import 'package:task/utils/app_constant.dart';
 import 'package:task/widgets/custom_button.dart';
 
 class ResultScreen extends HookWidget {
-  const ResultScreen({super.key, required this.score});
+  const ResultScreen(
+  {
+    super.key,
+    required this.score,
+       required this.selectedOptionsList,
+  });
   final int score;
+  final List<int> selectedOptionsList;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -137,7 +143,9 @@ class ResultScreen extends HookWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const CheckAnswerScreen(),
+                          builder: (context) => CheckAnswerScreen(
+                            selectedOptionsList: selectedOptionsList,
+                          ),
                         ),
                       );
                     },

@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, avoid_print
+// ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'dart:async';
 import 'dart:convert';
@@ -18,54 +18,106 @@ class QuizScreen extends ConsumerStatefulWidget {
 
 class HomeViewState extends ConsumerState<QuizScreen> {
   int currentQuestion = 0;
-  bool isQuizOver = false;
   late Timer timer;
-  int initialSec = 15;
+  int maxSec = 15;
+  late int currentSec;
   int selectedOption = 0;
   int userScore = 0;
   bool isSelected = false;
+  var quizData;
+
+  List<int> selectedOptionByUser = [];
 
   void startTimer() {
     timer = Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
-        if (initialSec == 0) {
-          if (currentQuestion < 4) {
-            notLastQuiz();
-          }
-          if (currentQuestion == 4) {
-            lastQuiz();
+        if (currentSec == 0) {
+          setState(() {
+            timer.cancel();
+          });
+          if (currentQuestion < quizData['questions'].length - 1) {
+            nextQuiz();
+          } else {
+            closeQuiz();
           }
         } else {
           setState(() {
-            initialSec--;
+            currentSec--;
           });
         }
       },
     );
   }
 
-  void notLastQuiz() {
+  nextQuiz() {
+    userProgressData();
     setState(() {
-      isSelected = false;
-      selectedOption = 0;
       timer.cancel();
-      initialSec = 15;
       startTimer();
       currentQuestion++;
+      isSelected = false;
+      selectedOption = 0;
+      currentSec = maxSec;
     });
   }
 
-  void lastQuiz() {
-    setState(() {
-      timer.cancel();
-      startTimer();
-      isQuizOver = true;
-    });
+  closeQuiz() {
+    timer.cancel();
+    userProgressData();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => ResultScreen(
+          score: userScore,
+          selectedOptionsList: selectedOptionByUser,
+        ),
+      ),
+    );
+  }
+
+  // void notLastQuiz() {
+  //   setState(() {
+  //     // isSelected = false;
+  //     // selectedOption = 0;
+  //     timer.cancel();
+  //     currentSec = maxSec;
+  //     startTimer();
+  //     currentQuestion++;
+  //   });
+  // }
+
+  // void lastQuiz() {
+  //   notLastQuiz();
+  //   Navigator.of(context).pushReplacement(
+  //     MaterialPageRoute(
+  //       builder: (context) => const ResultScreen(
+  //         // score: userScore,
+  //         score: 1,
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  Future<void> getQuizData() async {
+    var gotData = await DefaultAssetBundle.of(context)
+        .loadString('assets/json/quiz_data.json');
+    quizData = json.decode(gotData.toString());
+    return quizData;
+  }
+
+  userProgressData() {
+    if (selectedOption ==
+        quizData['questions'][currentQuestion]['correct_answer']) {
+      setState(() {
+        userScore++;
+      });
+    }
+    selectedOptionByUser.add(selectedOption);
   }
 
   @override
   void initState() {
+    currentSec = maxSec;
     startTimer();
     super.initState();
   }
@@ -81,10 +133,9 @@ class HomeViewState extends ConsumerState<QuizScreen> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: FutureBuilder(
-        future: DefaultAssetBundle.of(context)
-            .loadString('assets/json/quiz_data.json'),
+        future: getQuizData(),
         builder: (context, snapshot) {
-          var data = json.decode(snapshot.data.toString());
+          var data = quizData;
           if (data == null) {
             return const Center(
               child: CircularProgressIndicator(
@@ -103,11 +154,11 @@ class HomeViewState extends ConsumerState<QuizScreen> {
                       height: 125,
                       child: CustomPaint(
                         painter: OpenPainter(
-                          seconds: initialSec * 0.418879.toDouble(),
+                          seconds: currentSec * 0.418879.toDouble(),
                         ),
                         child: Center(
                           child: Text(
-                            initialSec.toString(),
+                            currentSec.toString(),
                             style:
                                 Theme.of(context).textTheme.headline2!.copyWith(
                                       fontWeight: FontWeight.w900,
@@ -165,41 +216,15 @@ class HomeViewState extends ConsumerState<QuizScreen> {
                       width: width * 0.8,
                       height: 40.h,
                       child: CustomButton(
-                        onPressed: isQuizOver
-                            ? () {
-                                if (selectedOption ==
-                                    data['questions'][currentQuestion]
-                                        ['correct_answer']) {
-                                  setState(() {
-                                    userScore++;
-                                  });
-                                }
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) => ResultScreen(
-                                      score: userScore,
-                                    ),
-                                  ),
-                                );
-                              }
-                            : () {
-                                if (selectedOption ==
-                                    data['questions'][currentQuestion]
-                                        ['correct_answer']) {
-                                  setState(() {
-                                    userScore++;
-                                  });
-                                }
-                                if (currentQuestion < 4) {
-                                  notLastQuiz();
-                                }
-                                if (currentQuestion == 4) {
-                                  lastQuiz();
-                                }
-                              },
-                        title: isSelected
-                            ? (isQuizOver ? 'Submit' : 'Submit & Next')
-                            : (isQuizOver ? 'Submit' : 'Skip'),
+                        onPressed: () {
+                          if (currentQuestion <
+                              quizData['questions'].length - 1) {
+                            nextQuiz();
+                          } else {
+                            closeQuiz();
+                          }
+                        },
+                        title: isSelected ? 'Submit' : 'Skip',
                       ),
                     ),
                   ),
