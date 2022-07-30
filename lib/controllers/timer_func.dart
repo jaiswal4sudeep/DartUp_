@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:task/screens/quiz_screen.dart';
+import 'package:task/screens/c_quiz_screen.dart';
 
 class CountDown extends StateNotifier<int> {
   CountDown() : super(0);

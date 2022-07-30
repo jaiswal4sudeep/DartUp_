@@ -21,7 +21,7 @@ class AppTheme {
       elevation: 0,
       iconTheme: IconThemeData(
         color: AppConstant.titlecolor,
-        size: 16.sp,
+        size: 20.sp,
       ),
     ),
     brightness: Brightness.light,

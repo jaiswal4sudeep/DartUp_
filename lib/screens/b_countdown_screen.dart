@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task/screens/quiz_screen.dart';
+import 'package:task/screens/c_quiz_screen.dart';
 
 class CountDownScreen extends StatefulWidget {
   const CountDownScreen({super.key});

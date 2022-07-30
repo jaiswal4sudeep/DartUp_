@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task/screens/countdown_screen.dart';
-import 'package:task/screens/onboarding_screen.dart';
+import 'package:task/screens/e_answers_screen.dart';
+import 'package:task/screens/b_countdown_screen.dart';
+import 'package:task/screens/a_onboarding_screen.dart';
 import 'package:task/utils/app_constant.dart';
 import 'package:task/widgets/custom_button.dart';
 
@@ -103,7 +104,7 @@ class ResultScreen extends HookWidget {
                 height: 10.h,
               ),
               Text(
-                'Total Score : $score',
+                'Total Score : $score/5',
                 style: Theme.of(context).textTheme.headline3,
               ),
               SizedBox(
@@ -122,6 +123,27 @@ class ResultScreen extends HookWidget {
                       );
                     },
                     title: 'Play Again',
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Center(
+                child: SizedBox(
+                  width: width * 0.8,
+                  height: 40.h,
+                  child: CustomButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const CheckAnswerScreen(),
+                        ),
+                      );
+                    },
+                    title: 'Check Answer',
+                    bgColor: Colors.transparent,
+                    textColor: AppConstant.primaryColor,
                   ),
                 ),
               ),

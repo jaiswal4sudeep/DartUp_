@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:task/screens/result_screen.dart';
+import 'package:task/screens/d_result_screen.dart';
 import 'package:task/utils/app_constant.dart';
 import 'package:task/widgets/custom_button.dart';
 

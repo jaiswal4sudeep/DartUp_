@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task/screens/countdown_screen.dart';
+import 'package:task/screens/b_countdown_screen.dart';
 import 'package:task/widgets/custom_button.dart';
 
 class OnboardingScreen extends StatelessWidget {
