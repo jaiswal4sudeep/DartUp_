@@ -68,6 +68,7 @@ class _CountDownScreenState extends State<CountDownScreen> {
                 initialSec.toString(),
                 style: Theme.of(context).textTheme.headline2!.copyWith(
                       fontSize: 48.sp,
+                      fontWeight: FontWeight.w500,
                     ),
               ),
             ],

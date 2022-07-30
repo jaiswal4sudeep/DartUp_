@@ -114,19 +114,19 @@ class QuestionWidget extends StatelessWidget {
               isSelectedByUser: selectedOptionsList[qid] == 1 ? true : false,
             ),
             OptionWidget(
-              text: 'A) ' + data['questions'][qid]['options'][1],
+              text: 'B) ' + data['questions'][qid]['options'][1],
               isTrue:
                   data['questions'][qid]['correct_answer'] == 2 ? true : false,
               isSelectedByUser: selectedOptionsList[qid] == 2 ? true : false,
             ),
             OptionWidget(
-              text: 'A) ' + data['questions'][qid]['options'][2],
+              text: 'C) ' + data['questions'][qid]['options'][2],
               isTrue:
                   data['questions'][qid]['correct_answer'] == 3 ? true : false,
               isSelectedByUser: selectedOptionsList[qid] == 3 ? true : false,
             ),
             OptionWidget(
-              text: 'A) ' + data['questions'][qid]['options'][3],
+              text: 'D) ' + data['questions'][qid]['options'][3],
               isTrue:
                   data['questions'][qid]['correct_answer'] == 4 ? true : false,
               isSelectedByUser: selectedOptionsList[qid] == 4 ? true : false,

@@ -8,11 +8,10 @@ import 'package:task/utils/app_constant.dart';
 import 'package:task/widgets/custom_button.dart';
 
 class ResultScreen extends HookWidget {
-  const ResultScreen(
-  {
+  const ResultScreen({
     super.key,
     required this.score,
-       required this.selectedOptionsList,
+    required this.selectedOptionsList,
   });
   final int score;
   final List<int> selectedOptionsList;
@@ -59,104 +58,102 @@ class ResultScreen extends HookWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 100.h,
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 100.h,
+            ),
+            Image.asset(
+              imagePath,
+              scale: 0.8,
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              commitment,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline2!.copyWith(
+                    fontSize: 28.sp,
+                  ),
+            ),
+            SizedBox(
+              height: 30.h,
+            ),
+            Container(
+              width: 300,
+              height: 20.h,
+              decoration: BoxDecoration(
+                color: AppConstant.subtitlecolor,
+                borderRadius: BorderRadius.circular(50),
               ),
-              Image.asset(
-                imagePath,
-                scale: 0.8,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                commitment,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline2!.copyWith(
-                      fontSize: 28.sp,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                  child: Container(
+                    width: score == 0 ? 0 : 60 * score.toDouble() - 6,
+                    height: 15.h,
+                    decoration: BoxDecoration(
+                      color: AppConstant.titlecolor,
+                      borderRadius: BorderRadius.circular(50),
                     ),
-              ),
-              SizedBox(
-                height: 50.h,
-              ),
-              Container(
-                width: 300,
-                height: 20.h,
-                decoration: BoxDecoration(
-                  color: AppConstant.subtitlecolor,
-                  borderRadius: BorderRadius.circular(50),
+                  ),
                 ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                    child: Container(
-                      width: score == 0 ? 0 : 60 * score.toDouble() - 6,
-                      height: 15.h,
-                      decoration: BoxDecoration(
-                        color: AppConstant.titlecolor,
-                        borderRadius: BorderRadius.circular(50),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              'Total Score : $score/5',
+              style: Theme.of(context).textTheme.headline3,
+            ),
+            const Spacer(),
+            Center(
+              child: SizedBox(
+                width: width * 0.8,
+                height: 40.h,
+                child: CustomButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const CountDownScreen(),
                       ),
-                    ),
-                  ),
+                    );
+                  },
+                  title: 'Play Again',
                 ),
               ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                'Total Score : $score/5',
-                style: Theme.of(context).textTheme.headline3,
-              ),
-              SizedBox(
-                height: 30.h,
-              ),
-              Center(
-                child: SizedBox(
-                  width: width * 0.8,
-                  height: 40.h,
-                  child: CustomButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => const CountDownScreen(),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Center(
+              child: SizedBox(
+                width: width * 0.8,
+                height: 40.h,
+                child: CustomButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => CheckAnswerScreen(
+                          selectedOptionsList: selectedOptionsList,
                         ),
-                      );
-                    },
-                    title: 'Play Again',
-                  ),
+                      ),
+                    );
+                  },
+                  title: 'Check Answer',
+                  bgColor: Colors.transparent,
+                  textColor: AppConstant.primaryColor,
                 ),
               ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Center(
-                child: SizedBox(
-                  width: width * 0.8,
-                  height: 40.h,
-                  child: CustomButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => CheckAnswerScreen(
-                            selectedOptionsList: selectedOptionsList,
-                          ),
-                        ),
-                      );
-                    },
-                    title: 'Check Answer',
-                    bgColor: Colors.transparent,
-                    textColor: AppConstant.primaryColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 30.h,
+            ),
+          ],
         ),
       ),
     );

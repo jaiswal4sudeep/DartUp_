@@ -12,8 +12,10 @@ class OnboardingScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            SizedBox(
+              height: 100.h,
+            ),
             Center(
               child: Image.asset(
                 'assets/images/onboarding.png',
@@ -21,6 +23,7 @@ class OnboardingScreen extends StatelessWidget {
                 fit: BoxFit.fitWidth,
               ),
             ),
+            const Spacer(),
             SizedBox(
               width: width * 0.8,
               height: 40.h,
@@ -34,6 +37,9 @@ class OnboardingScreen extends StatelessWidget {
                 },
                 title: 'START NOW',
               ),
+            ),
+            SizedBox(
+              height: 40.h,
             ),
           ],
         ),

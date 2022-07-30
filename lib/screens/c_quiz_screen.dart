@@ -75,29 +75,6 @@ class HomeViewState extends ConsumerState<QuizScreen> {
     );
   }
 
-  // void notLastQuiz() {
-  //   setState(() {
-  //     // isSelected = false;
-  //     // selectedOption = 0;
-  //     timer.cancel();
-  //     currentSec = maxSec;
-  //     startTimer();
-  //     currentQuestion++;
-  //   });
-  // }
-
-  // void lastQuiz() {
-  //   notLastQuiz();
-  //   Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(
-  //       builder: (context) => const ResultScreen(
-  //         // score: userScore,
-  //         score: 1,
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Future<void> getQuizData() async {
     var gotData = await DefaultAssetBundle.of(context)
         .loadString('assets/json/quiz_data.json');
@@ -131,108 +108,133 @@ class HomeViewState extends ConsumerState<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: FutureBuilder(
-        future: getQuizData(),
-        builder: (context, snapshot) {
-          var data = quizData;
-          if (data == null) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: AppConstant.primaryColor,
-              ),
-            );
-          } else {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: SafeArea(
+        child: FutureBuilder(
+          future: getQuizData(),
+          builder: (context, snapshot) {
+            var data = quizData;
+            if (data == null) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: AppConstant.primaryColor,
+                ),
+              );
+            } else {
+              return Column(
                 children: [
-                  Center(
-                    child: SizedBox(
-                      width: 125,
-                      height: 125,
-                      child: CustomPaint(
-                        painter: OpenPainter(
-                          seconds: currentSec * 0.418879.toDouble(),
-                        ),
-                        child: Center(
-                          child: Text(
-                            currentSec.toString(),
-                            style:
-                                Theme.of(context).textTheme.headline2!.copyWith(
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 48.sp,
-                                    ),
+                  SizedBox(
+                    height: height * 0.85 - 50,
+                    child: Column(
+                      children: [
+                        const Spacer(),
+                        Center(
+                          child: SizedBox(
+                            width: 125,
+                            height: 125,
+                            child: CustomPaint(
+                              painter: OpenPainter(
+                                seconds: currentSec * 0.418879.toDouble(),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  currentSec.toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline2!
+                                      .copyWith(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 48.sp,
+                                      ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30.h,
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        data['questions'][currentQuestion]['question'],
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headline2!.copyWith(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 28.sp,
+                        SizedBox(
+                          height: 30.h,
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              data['questions'][currentQuestion]['question'],
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline2!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 28.sp,
+                                  ),
                             ),
-                      ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: options(
+                            data,
+                            context,
+                            1,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: options(
+                            data,
+                            context,
+                            2,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: options(
+                            data,
+                            context,
+                            3,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: options(
+                            data,
+                            context,
+                            4,
+                          ),
+                        ),
+                        const Spacer(),
+                      ],
                     ),
                   ),
                   SizedBox(
-                    height: 15.h,
-                  ),
-                  options(
-                    data,
-                    context,
-                    1,
-                  ),
-                  options(
-                    data,
-                    context,
-                    2,
-                  ),
-                  options(
-                    data,
-                    context,
-                    3,
-                  ),
-                  options(
-                    data,
-                    context,
-                    4,
-                  ),
-                  SizedBox(
-                    height: 30.h,
-                  ),
-                  Center(
-                    child: SizedBox(
-                      width: width * 0.8,
-                      height: 40.h,
-                      child: CustomButton(
-                        onPressed: () {
-                          if (currentQuestion <
-                              quizData['questions'].length - 1) {
-                            nextQuiz();
-                          } else {
-                            closeQuiz();
-                          }
-                        },
-                        title: isSelected ? 'Submit' : 'Skip',
+                    height: height * 0.15,
+                    child: Center(
+                      child: SizedBox(
+                        width: width * 0.8,
+                        height: 40.h,
+                        child: CustomButton(
+                          onPressed: () {
+                            if (currentQuestion <
+                                quizData['questions'].length - 1) {
+                              nextQuiz();
+                            } else {
+                              closeQuiz();
+                            }
+                          },
+                          title: isSelected ? 'Submit' : 'Skip',
+                        ),
                       ),
                     ),
                   ),
                 ],
-              ),
-            );
-          }
-        },
+              );
+            }
+          },
+        ),
       ),
     );
   }
