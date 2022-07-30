@@ -30,21 +30,12 @@ class HomeViewState extends ConsumerState<QuizScreen> {
       const Duration(seconds: 1),
       (Timer timer) {
         if (initialSec == 0) {
-          setState(() {
-            if (currentQuestion < 4) {
-              isSelected = false;
-              selectedOption = 0;
-              timer.cancel();
-              initialSec = 15;
-              startTimer();
-              currentQuestion++;
-            }
-            if (currentQuestion == 4) {
-              timer.cancel();
-              startTimer();
-              isQuizOver = true;
-            }
-          });
+          if (currentQuestion < 4) {
+            notLastQuiz();
+          }
+          if (currentQuestion == 4) {
+            lastQuiz();
+          }
         } else {
           setState(() {
             initialSec--;
@@ -52,6 +43,25 @@ class HomeViewState extends ConsumerState<QuizScreen> {
         }
       },
     );
+  }
+
+  void notLastQuiz() {
+    setState(() {
+      isSelected = false;
+      selectedOption = 0;
+      timer.cancel();
+      initialSec = 15;
+      startTimer();
+      currentQuestion++;
+    });
+  }
+
+  void lastQuiz() {
+    setState(() {
+      timer.cancel();
+      startTimer();
+      isQuizOver = true;
+    });
   }
 
   @override
@@ -164,8 +174,6 @@ class HomeViewState extends ConsumerState<QuizScreen> {
                                     userScore++;
                                   });
                                 }
-                                // print(userScore);
-                                // timer.cancel();
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                     builder: (context) => ResultScreen(
@@ -183,25 +191,10 @@ class HomeViewState extends ConsumerState<QuizScreen> {
                                   });
                                 }
                                 if (currentQuestion < 4) {
-                                  setState(
-                                    () {
-                                      isSelected = false;
-                                      selectedOption = 0;
-                                      timer.cancel();
-                                      initialSec = 15;
-                                      startTimer();
-                                      currentQuestion++;
-                                    },
-                                  );
+                                  notLastQuiz();
                                 }
                                 if (currentQuestion == 4) {
-                                  setState(
-                                    () {
-                                      timer.cancel();
-                                      startTimer();
-                                      isQuizOver = true;
-                                    },
-                                  );
+                                  lastQuiz();
                                 }
                               },
                         title: isSelected

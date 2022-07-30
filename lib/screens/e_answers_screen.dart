@@ -125,7 +125,7 @@ class QuestionWidget extends StatelessWidget {
                   vertical: 4.0,
                 ),
                 child: Text(
-                  'C) ' + data['questions'][0]['options'][2],
+                  'C) ' + data['questions'][qid]['options'][2],
                   style: Theme.of(context).textTheme.headline5!.copyWith(
                         fontSize: data['questions'][qid]['correct_answer'] == 3
                             ? 13.sp
