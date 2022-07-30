@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:task/screens/d_result_screen.dart';
 import 'package:task/utils/app_constant.dart';
+import 'package:task/widgets/arc.dart';
 import 'package:task/widgets/custom_button.dart';
 
 class QuizScreen extends ConsumerStatefulWidget {
@@ -134,7 +135,7 @@ class HomeViewState extends ConsumerState<QuizScreen> {
                             width: 125,
                             height: 125,
                             child: CustomPaint(
-                              painter: OpenPainter(
+                              painter: Arc(
                                 seconds: currentSec * 0.418879.toDouble(),
                               ),
                               child: Center(
@@ -268,28 +269,3 @@ class HomeViewState extends ConsumerState<QuizScreen> {
   }
 }
 
-class OpenPainter extends CustomPainter {
-  double seconds;
-
-  OpenPainter({
-    required this.seconds,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    var paint1 = Paint()
-      ..color = AppConstant.titlecolor.withOpacity(0.7)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 3;
-    canvas.drawArc(
-      const Offset(0, 0) & const Size(125, 125),
-      0, //radians
-      seconds, //radians
-      false,
-      paint1,
-    );
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
-}

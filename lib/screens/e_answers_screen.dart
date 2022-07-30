@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_typing_uninitialized_variables
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task/utils/app_constant.dart';
+import 'package:task/widgets/option_widget.dart';
 
 class CheckAnswerScreen extends StatelessWidget {
   const CheckAnswerScreen({
@@ -138,44 +139,4 @@ class QuestionWidget extends StatelessWidget {
   }
 }
 
-class OptionWidget extends StatelessWidget {
-  const OptionWidget({
-    Key? key,
-    required this.text,
-    required this.isTrue,
-    required this.isSelectedByUser,
-  }) : super(key: key);
-
-  final String text;
-  final bool isTrue;
-  final bool isSelectedByUser;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-        vertical: 4.0,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Text(
-              text,
-              style: Theme.of(context).textTheme.headline5!.copyWith(
-                    fontSize: isTrue ? 13.sp : 12.sp,
-                    fontWeight: isTrue ? FontWeight.w700 : FontWeight.w500,
-                  ),
-            ),
-          ),
-          Icon(
-            isSelectedByUser
-                ? (isTrue ? Icons.check_rounded : Icons.clear_rounded)
-                : (isTrue ? Icons.check_rounded : null),
-          ),
-        ],
-      ),
-    );
-  }
-}
+// TODO initFunc
