@@ -1,7 +1,9 @@
 <h1>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/51513908/181935053-a2c0f6f3-5c10-40ea-907b-4cf4e8638f09.png" alt="Logo" width="125" height="125">
-  <br>DartUP
+  <img src="https://user-images.githubusercontent.com/51513908/182021807-4a05c149-daea-4e1b-ab0f-9b8ff69c297e.png" alt="Logo" width="125" height="125">
+  <br>
+  <br>
+  DartUP
 </h1>
   <p align="center">
     Made with &hearts; with Flutter
@@ -11,7 +13,7 @@
 
 
 <p align ="center">
-  <h3>Preview</h3>
+  <!--<h3>Preview</h3>-->
   <img src="https://user-images.githubusercontent.com/51513908/181934557-fcd86ce1-9475-4306-a260-7e85db983717.jpg" alt="demo">
  </p>
   <br/>
