@@ -12,9 +12,11 @@ class ResultScreen extends HookWidget {
     super.key,
     required this.score,
     required this.selectedOptionsList,
+    required this.noOfQuiz,
   });
   final int score;
   final List<int> selectedOptionsList;
+  final int noOfQuiz;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -79,7 +81,7 @@ class ResultScreen extends HookWidget {
                   ),
             ),
             SizedBox(
-              height: 30.h,
+              height: 20.h,
             ),
             Container(
               width: 300,
@@ -104,10 +106,10 @@ class ResultScreen extends HookWidget {
               ),
             ),
             SizedBox(
-              height: 10.h,
+              height: 15.h,
             ),
             Text(
-              'Total Score : $score/5',
+              'Total Score : $score/$noOfQuiz',
               style: Theme.of(context).textTheme.headline3,
             ),
             const Spacer(),

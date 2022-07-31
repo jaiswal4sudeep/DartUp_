@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_typing_uninitialized_variables, unused_local_variable
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task/utils/app_constant.dart';
-import 'package:task/widgets/option_widget.dart';
 
 class CheckAnswerScreen extends StatelessWidget {
   const CheckAnswerScreen({
@@ -16,6 +15,14 @@ class CheckAnswerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var quizData;
+    Future<void> getQuizData() async {
+      var gotData = await DefaultAssetBundle.of(context)
+          .loadString('assets/json/quiz_data.json');
+      quizData = json.decode(gotData.toString());
+      return quizData;
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -28,12 +35,9 @@ class CheckAnswerScreen extends StatelessWidget {
         ),
       ),
       body: FutureBuilder(
-        future: DefaultAssetBundle.of(context)
-            .loadString('assets/json/quiz_data.json'),
+        future: getQuizData(),
         builder: (context, snapshot) {
-          var data = json.decode(
-            snapshot.data.toString(),
-          );
+          var data = quizData;
           if (data == null) {
             return const Center(
               child: CircularProgressIndicator(
@@ -92,6 +96,7 @@ class QuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var id = qid + 1;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Padding(
@@ -102,35 +107,56 @@ class QuestionWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                '\u2022 ' + data['questions'][qid]['question'],
+                id.toString() + ') ' + data['questions'][qid]['question'],
                 style: Theme.of(context).textTheme.headline3!.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
               ),
             ),
-            OptionWidget(
-              text: 'A) ' + data['questions'][qid]['options'][0],
-              isTrue:
-                  data['questions'][qid]['correct_answer'] == 1 ? true : false,
-              isSelectedByUser: selectedOptionsList[qid] == 1 ? true : false,
-            ),
-            OptionWidget(
-              text: 'B) ' + data['questions'][qid]['options'][1],
-              isTrue:
-                  data['questions'][qid]['correct_answer'] == 2 ? true : false,
-              isSelectedByUser: selectedOptionsList[qid] == 2 ? true : false,
-            ),
-            OptionWidget(
-              text: 'C) ' + data['questions'][qid]['options'][2],
-              isTrue:
-                  data['questions'][qid]['correct_answer'] == 3 ? true : false,
-              isSelectedByUser: selectedOptionsList[qid] == 3 ? true : false,
-            ),
-            OptionWidget(
-              text: 'D) ' + data['questions'][qid]['options'][3],
-              isTrue:
-                  data['questions'][qid]['correct_answer'] == 4 ? true : false,
-              isSelectedByUser: selectedOptionsList[qid] == 4 ? true : false,
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: data['questions'][qid]['options'].length,
+              itemBuilder: (context, index) {
+                var text = '\u2022 ' + data['questions'][qid]['options'][index];
+                bool isTrue =
+                    data['questions'][qid]['correct_answer'] == index + 1
+                        ? true
+                        : false;
+                bool isSelectedByUser =
+                    selectedOptionsList[qid] == index + 1 ? true : false;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 4.0,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          text,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline5!
+                              .copyWith(
+                                fontSize: isTrue ? 13.sp : 12.sp,
+                                fontWeight:
+                                    isTrue ? FontWeight.w700 : FontWeight.w500,
+                              ),
+                        ),
+                      ),
+                      Icon(
+                        isSelectedByUser
+                            ? (isTrue
+                                ? Icons.check_rounded
+                                : Icons.clear_rounded)
+                            : (isTrue ? Icons.check_rounded : null),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -138,5 +164,3 @@ class QuestionWidget extends StatelessWidget {
     );
   }
 }
-
-// TODO initFunc

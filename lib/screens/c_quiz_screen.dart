@@ -71,6 +71,7 @@ class HomeViewState extends ConsumerState<QuizScreen> {
         builder: (context) => ResultScreen(
           score: userScore,
           selectedOptionsList: selectedOptionByUser,
+          noOfQuiz: quizData['questions'].length,
         ),
       ),
     );
@@ -127,88 +128,99 @@ class HomeViewState extends ConsumerState<QuizScreen> {
                 children: [
                   SizedBox(
                     height: height * 0.85 - 50,
-                    child: Column(
-                      children: [
-                        const Spacer(),
-                        Center(
-                          child: SizedBox(
-                            width: 125,
-                            height: 125,
-                            child: CustomPaint(
-                              painter: Arc(
-                                seconds: currentSec * 0.418879.toDouble(),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  currentSec.toString(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline2!
-                                      .copyWith(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 48.sp,
-                                      ),
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 60.h,
+                          ),
+                          Center(
+                            child: SizedBox(
+                              width: 125,
+                              height: 125,
+                              child: CustomPaint(
+                                painter: Arc(
+                                  seconds: currentSec * 0.418879.toDouble(),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    currentSec.toString(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2!
+                                        .copyWith(
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 48.sp,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              data['questions'][currentQuestion]['question'],
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline2!
-                                  .copyWith(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 28.sp,
-                                  ),
+                          SizedBox(
+                            height: 30.h,
+                          ),
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                data['questions'][currentQuestion]['question'],
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline2!
+                                    .copyWith(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 28.sp,
+                                    ),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: options(
-                            data,
-                            context,
-                            1,
+                          SizedBox(
+                            height: 15.h,
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: options(
-                            data,
-                            context,
-                            2,
+                          ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: data['questions'][currentQuestion]
+                                    ['options']
+                                .length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: RadioListTile(
+                                  value: index + 1,
+                                  groupValue: selectedOption,
+                                  onChanged: (val) {
+                                    setState(
+                                      () {
+                                        selectedOption = val!;
+                                        isSelected = true;
+                                      },
+                                    );
+                                  },
+                                  activeColor: AppConstant.titlecolor,
+                                  title: Text(
+                                    data['questions'][currentQuestion]
+                                        ['options'][index],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline4!
+                                        .copyWith(
+                                          color: selectedOption == index + 1
+                                              ? AppConstant.titlecolor
+                                              : AppConstant.titlecolor
+                                                  .withOpacity(0.8),
+                                        ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: options(
-                            data,
-                            context,
-                            3,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: options(
-                            data,
-                            context,
-                            4,
-                          ),
-                        ),
-                        const Spacer(),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -239,33 +251,4 @@ class HomeViewState extends ConsumerState<QuizScreen> {
       ),
     );
   }
-
-  RadioListTile<int> options(
-    data,
-    BuildContext context,
-    int optionId,
-  ) {
-    return RadioListTile(
-      value: optionId,
-      groupValue: selectedOption,
-      onChanged: (val) {
-        setState(
-          () {
-            selectedOption = val!;
-            isSelected = true;
-          },
-        );
-      },
-      activeColor: AppConstant.titlecolor,
-      title: Text(
-        data['questions'][currentQuestion]['options'][optionId - 1],
-        style: Theme.of(context).textTheme.headline4!.copyWith(
-              color: selectedOption == optionId
-                  ? AppConstant.titlecolor
-                  : AppConstant.titlecolor.withOpacity(0.8),
-            ),
-      ),
-    );
-  }
 }
-
