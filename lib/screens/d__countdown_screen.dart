@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task/screens/c_quiz_screen.dart';
+import 'package:task/screens/e_quiz_screen.dart';
 
 class CountDownScreen extends StatefulWidget {
-  const CountDownScreen({super.key});
+  const CountDownScreen({Key? key, required this.selectedOption})
+      : super(key: key);
+
+  final int selectedOption;
 
   @override
   State<CountDownScreen> createState() => _CountDownScreenState();
@@ -23,7 +26,9 @@ class _CountDownScreenState extends State<CountDownScreen> {
             timer.cancel();
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => const QuizScreen(),
+                builder: (context) => QuizScreen(
+                  selectedOption: widget.selectedOption,
+                ),
               ),
             );
           });

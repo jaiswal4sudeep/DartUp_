@@ -29,6 +29,7 @@ class AppTheme {
     cardColor: AppConstant.backgroundColor,
     unselectedWidgetColor: Colors.black45,
     dividerColor: AppConstant.titlecolor,
+   
     textTheme: TextTheme(
       headline1: GoogleFonts.montserrat(
         color: AppConstant.titlecolor,

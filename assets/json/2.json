@@ -1,0 +1,114 @@
+{
+    "questions": [
+        {
+            "qid": 1,
+            "question": "Which one of the following is not a keyword in Dart?",
+            "options": [
+                "import",
+                "else",
+                "flutter",
+                "as"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 2,
+            "question": "Which of the following is an exit controlled loop?",
+            "options": [
+                "while loop",
+                "for loop",
+                "do-while loop",
+                "None of the above"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 3,
+            "question": " Which of the following is not a logical operator?",
+            "options": [
+                "&&",
+                "!",
+                "||",
+                "|"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 4,
+            "question": "Which of the following is not a valid C variable name?",
+            "options": [
+                "int number;",
+                "double rate;",
+                "int variable_count;",
+                "int $main;"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 5,
+            "question": "What types of tests can you perform in Flutter?",
+            "options": [
+                "Unit Tests",
+                "Widget Tests",
+                "Integration Tests",
+                "All of the above"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 6,
+            "question": "What is Flutter?",
+            "options": [
+                "Flutter is an open-source DBMS",
+                "Flutter is an open-source UI toolkit",
+                "Flutter is an open-source backend toolkit",
+                "All of the above"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 7,
+            "question": "Flutter is developed by ________.",
+            "options": [
+                "Microsoft",
+                "Facebook",
+                "Google",
+                "IBM"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 8,
+            "question": "What are the advantages of Flutter?",
+            "options": [
+                "Cross-platform Development",
+                "Faster Development",
+                "UI Focused",
+                "All of the above"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 9,
+            "question": "How many types of widgets are there in Flutter?",
+            "options": [
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "correct_answer": 1
+        },
+        {
+            "qid": 10,
+            "question": "What types of tests can you perform in Flutter?",
+            "options": [
+                "Unit Tests",
+                "Widget Tests",
+                "Integration Tests",
+                "All of the above"
+            ],
+            "correct_answer": 4
+        }
+    ]
+}

@@ -1,0 +1,112 @@
+{
+    "questions": [
+        {
+            "qid": 1,
+            "question": "Are stateless widgets mutable or immutable?",
+            "options": [
+                "Mutable",
+                "Immutable"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 2,
+            "question": "Which widget is utilized to wrap the Column, Container, Row, or other widgets. This widget inserts the filling size around the child widget?",
+            "options": [
+                "Image",
+                "SnackBar",
+                "Padding",
+                "AlertDialog"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 4,
+            "question": "Which of the following tests a single widget?",
+            "options": [
+                "Unit Tests",
+                "Widget Tests",
+                "Interactive Tests",
+                "Integration Tests"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 5,
+            "question": "In Flutter, which of the following is used as identifiers for widgets, elements, and semantic nodes?",
+            "options": [
+                "Buttons",
+                "Keys",
+                "Widgets",
+                "Streams"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 6,
+            "question": "What are the subclasses of Key?",
+            "options": [
+                "GlobalKey",
+                "LocalKey",
+                "GlobalKey and LocalKey",
+                "None of the above"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 7,
+            "question": "The __ animation allows you to represent real-world behavior in Flutter.",
+            "options": [
+                "Maths-based",
+                "Physics-based",
+                "Graph-based",
+                "None of the above"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 8,
+            "question": "What is the refresh rate of our animation in Flutter?",
+            "options": [
+                "Show",
+                "Refresh",
+                "Ticker",
+                "None of the above"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 9,
+            "question": " Which of the following is a sequence of asynchronous events?",
+            "options": [
+                "Stream",
+                "Flow",
+                "Current",
+                "None of the above"
+            ],
+            "correct_answer": 1
+        },
+        {
+            "qid": 10,
+            "question": "Access and manipulate the cloud database is possible with which of the following options?",
+            "options": [
+                "Firebase Database",
+                "SQFlite Database",
+                "Both A and B",
+                "None of the above"
+            ],
+            "correct_answer": 1
+        },
+        {
+            "qid": 7,
+            "question": "Which of the given below commands checks our environment and shows the report of the status of our Flutter and Android studio apart from the IDE software installation?",
+            "options": [
+                "flutter clean",
+                "flutter screen",
+                "flutter master",
+                "flutter doctor"
+            ],
+            "correct_answer": 4
+        }
+    ]
+}

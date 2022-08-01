@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task/screens/e_answers_screen.dart';
-import 'package:task/screens/b_countdown_screen.dart';
-import 'package:task/screens/a_onboarding_screen.dart';
+import 'package:task/screens/c_quiz_type_selection_screen.dart';
+import 'package:task/screens/g_answers_screen.dart';
+import 'package:task/screens/b_onboarding_screen.dart';
 import 'package:task/utils/app_constant.dart';
 import 'package:task/widgets/custom_button.dart';
 
 class ResultScreen extends HookWidget {
-  const ResultScreen({
+  const ResultScreen( {
     super.key,
     required this.score,
     required this.selectedOptionsList,
     required this.noOfQuiz,
+    required this.scriptFile,
   });
   final int score;
   final List<int> selectedOptionsList;
   final int noOfQuiz;
+  final String scriptFile;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -121,7 +123,7 @@ class ResultScreen extends HookWidget {
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => const CountDownScreen(),
+                        builder: (context) => const QuizTyepSelectionScreen(),
                       ),
                     );
                   },
@@ -142,6 +144,7 @@ class ResultScreen extends HookWidget {
                       MaterialPageRoute(
                         builder: (context) => CheckAnswerScreen(
                           selectedOptionsList: selectedOptionsList,
+                          scriptFile: scriptFile,
                         ),
                       ),
                     );

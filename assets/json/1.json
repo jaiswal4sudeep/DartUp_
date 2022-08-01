@@ -1,0 +1,108 @@
+{
+    "questions": [
+        {
+            "qid": 1,
+            "question": "Dart is an?",
+            "options": [
+                "Open-source",
+                "General purpose",
+                "Programming language",
+                "All of the above"
+            ],
+            "correct_answer": 4
+        },
+        {
+            "qid": 2,
+            "question": "Dart is developed by?",
+            "options": [
+                "Microsoft",
+                "Facebook",
+                "Google",
+                "IBM"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 3,
+            "question": "The _______ function is a predefined method in Dart.",
+            "options": [
+                "declare()",
+                "list()",
+                "main()",
+                "return()"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 4,
+            "question": "Dart is an Object-Oriented language.",
+            "options": [
+                "Yes",
+                "No"
+            ],
+            "correct_answer": 1
+        },
+        {
+            "qid": 5,
+            "question": "Which function is responsible for starting the Dart program?",
+            "options": [
+                "runApp()",
+                "main()",
+                "run()",
+                "flutter()"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 6,
+            "question": "A notable feature of the Dart platform is its support for “hot reload”",
+            "options": [
+                "False",
+                "True"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 7,
+            "question": "The Dart language can be compiled",
+            "options": [
+                "AOT",
+                "JIT",
+                "Both AOT and JIT",
+                "None of the above"
+            ],
+            "correct_answer": 3
+        },
+        {
+            "qid": 8,
+            "question": "Is Dart a case sensitive language?",
+            "options": [
+                "Yes",
+                "No"
+            ],
+            "correct_answer": 1
+        },
+        {
+            "qid": 9,
+            "question": "Is Dart static or dynamic language?",
+            "options": [
+                "Statically typed language",
+                "Dynamically typed language",
+                "Both A and B",
+                "None of the above"
+            ],
+            "correct_answer": 1
+        },
+        {
+            "qid": 10,
+            "question": "Is Dart interpreted or compiled?",
+            "options": [
+                "Interpreted language",
+                "Compiler language",
+                "Interpreted Compiler language",
+                "None of the above"
+            ],
+            "correct_answer": 3
+        }
+    ]
+}

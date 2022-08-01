@@ -5,13 +5,18 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:task/screens/d_result_screen.dart';
+import 'package:task/screens/f_result_screen.dart';
 import 'package:task/utils/app_constant.dart';
 import 'package:task/widgets/arc.dart';
 import 'package:task/widgets/custom_button.dart';
 
 class QuizScreen extends ConsumerStatefulWidget {
-  const QuizScreen({Key? key}) : super(key: key);
+  const QuizScreen({
+    super.key,
+    required this.selectedOption,
+  });
+
+  final int selectedOption;
 
   @override
   HomeViewState createState() => HomeViewState();
@@ -26,6 +31,8 @@ class HomeViewState extends ConsumerState<QuizScreen> {
   int userScore = 0;
   bool isSelected = false;
   var quizData;
+  late String scriptFile;
+  late String optFileIndex;
 
   List<int> selectedOptionByUser = [];
 
@@ -72,14 +79,14 @@ class HomeViewState extends ConsumerState<QuizScreen> {
           score: userScore,
           selectedOptionsList: selectedOptionByUser,
           noOfQuiz: quizData['questions'].length,
+          scriptFile: scriptFile,
         ),
       ),
     );
   }
 
   Future<void> getQuizData() async {
-    var gotData = await DefaultAssetBundle.of(context)
-        .loadString('assets/json/quiz_data.json');
+    var gotData = await DefaultAssetBundle.of(context).loadString(scriptFile);
     quizData = json.decode(gotData.toString());
     return quizData;
   }
@@ -98,6 +105,8 @@ class HomeViewState extends ConsumerState<QuizScreen> {
   void initState() {
     currentSec = maxSec;
     startTimer();
+    optFileIndex = widget.selectedOption.toString();
+    scriptFile = 'assets/json/$optFileIndex.json';
     super.initState();
   }
 

@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task/screens/b_countdown_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:task/screens/c_quiz_type_selection_screen.dart';
 import 'package:task/widgets/custom_button.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -28,14 +31,17 @@ class OnboardingScreen extends StatelessWidget {
               width: width * 0.8,
               height: 40.h,
               child: CustomButton(
-                onPressed: () {
+                onPressed: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setBool('isAppInited', true);
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => const CountDownScreen(),
+                      builder: (context) => const QuizTyepSelectionScreen(),
                     ),
                   );
                 },
-                title: 'START NOW',
+                title: 'GET STARTED',
               ),
             ),
             SizedBox(

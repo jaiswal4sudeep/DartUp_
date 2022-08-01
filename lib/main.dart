@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:task/screens/a_onboarding_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:task/screens/a_splash_screen.dart';
 import 'package:task/utils/app_theme.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferences.getInstance();
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: const OnboardingScreen(),
+      child: const SplashScreen(),
     );
   }
 }

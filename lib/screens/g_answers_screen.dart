@@ -8,17 +8,18 @@ import 'package:task/utils/app_constant.dart';
 class CheckAnswerScreen extends StatelessWidget {
   const CheckAnswerScreen({
     super.key,
-    required this.selectedOptionsList,
+    required this.selectedOptionsList, required this.scriptFile,
   });
 
   final List<int> selectedOptionsList;
+  final String scriptFile;
 
   @override
   Widget build(BuildContext context) {
     var quizData;
     Future<void> getQuizData() async {
       var gotData = await DefaultAssetBundle.of(context)
-          .loadString('assets/json/quiz_data.json');
+          .loadString(scriptFile);
       quizData = json.decode(gotData.toString());
       return quizData;
     }
