@@ -8,7 +8,8 @@ import 'package:task/utils/app_constant.dart';
 class CheckAnswerScreen extends StatelessWidget {
   const CheckAnswerScreen({
     super.key,
-    required this.selectedOptionsList, required this.scriptFile,
+    required this.selectedOptionsList,
+    required this.scriptFile,
   });
 
   final List<int> selectedOptionsList;
@@ -18,8 +19,7 @@ class CheckAnswerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var quizData;
     Future<void> getQuizData() async {
-      var gotData = await DefaultAssetBundle.of(context)
-          .loadString(scriptFile);
+      var gotData = await DefaultAssetBundle.of(context).loadString(scriptFile);
       quizData = json.decode(gotData.toString());
       return quizData;
     }
@@ -109,7 +109,7 @@ class QuestionWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 id.toString() + ') ' + data['questions'][qid]['question'],
-                style: Theme.of(context).textTheme.headline3!.copyWith(
+                style: Theme.of(context).textTheme.headline4!.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
               ),

@@ -24,7 +24,7 @@ class QuizScreen extends ConsumerStatefulWidget {
 
 class HomeViewState extends ConsumerState<QuizScreen> {
   int currentQuestion = 0;
-  late Timer timer;
+  // late Timer timer;
   int maxSec = 15;
   late int currentSec;
   int selectedOption = 0;
@@ -36,33 +36,33 @@ class HomeViewState extends ConsumerState<QuizScreen> {
 
   List<int> selectedOptionByUser = [];
 
-  void startTimer() {
-    timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (Timer timer) {
-        if (currentSec == 0) {
-          setState(() {
-            timer.cancel();
-          });
-          if (currentQuestion < quizData['questions'].length - 1) {
-            nextQuiz();
-          } else {
-            closeQuiz();
-          }
-        } else {
-          setState(() {
-            currentSec--;
-          });
-        }
-      },
-    );
-  }
+  // void startTimer() {
+  //   timer = Timer.periodic(
+  //     const Duration(seconds: 1),
+  //     (Timer timer) {
+  //       if (currentSec == 0) {
+  //         setState(() {
+  //           timer.cancel();
+  //         });
+  //         if (currentQuestion < quizData['questions'].length - 1) {
+  //           nextQuiz();
+  //         } else {
+  //           closeQuiz();
+  //         }
+  //       } else {
+  //         setState(() {
+  //           currentSec--;
+  //         });
+  //       }
+  //     },
+  //   );
+  // }
 
   nextQuiz() {
     userProgressData();
     setState(() {
-      timer.cancel();
-      startTimer();
+      // timer.cancel();
+      // startTimer();
       currentQuestion++;
       isSelected = false;
       selectedOption = 0;
@@ -71,7 +71,7 @@ class HomeViewState extends ConsumerState<QuizScreen> {
   }
 
   closeQuiz() {
-    timer.cancel();
+    // timer.cancel();
     userProgressData();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
@@ -104,7 +104,7 @@ class HomeViewState extends ConsumerState<QuizScreen> {
   @override
   void initState() {
     currentSec = maxSec;
-    startTimer();
+    // startTimer();
     optFileIndex = widget.selectedOption.toString();
     scriptFile = 'assets/json/$optFileIndex.json';
     super.initState();
@@ -112,7 +112,7 @@ class HomeViewState extends ConsumerState<QuizScreen> {
 
   @override
   void dispose() {
-    timer.cancel();
+    // timer.cancel();
     super.dispose();
   }
 
@@ -175,13 +175,12 @@ class HomeViewState extends ConsumerState<QuizScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 data['questions'][currentQuestion]['question'],
-                                textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline2!
                                     .copyWith(
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 28.sp,
+                                      fontSize: 18.sp,
                                     ),
                               ),
                             ),

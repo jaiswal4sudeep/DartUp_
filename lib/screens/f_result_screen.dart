@@ -8,7 +8,7 @@ import 'package:task/utils/app_constant.dart';
 import 'package:task/widgets/custom_button.dart';
 
 class ResultScreen extends HookWidget {
-  const ResultScreen( {
+  const ResultScreen({
     super.key,
     required this.score,
     required this.selectedOptionsList,
@@ -132,27 +132,29 @@ class ResultScreen extends HookWidget {
               ),
             ),
             SizedBox(
-              height: 20.h,
+              height: 5.h,
             ),
-            Center(
-              child: SizedBox(
-                width: width * 0.8,
-                height: 40.h,
-                child: CustomButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => CheckAnswerScreen(
-                          selectedOptionsList: selectedOptionsList,
-                          scriptFile: scriptFile,
-                        ),
-                      ),
-                    );
-                  },
-                  title: 'Check Answer',
-                  bgColor: Colors.transparent,
-                  textColor: AppConstant.primaryColor,
-                ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: AppConstant.primaryColor,
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CheckAnswerScreen(
+                      selectedOptionsList: selectedOptionsList,
+                      scriptFile: scriptFile,
+                    ),
+                  ),
+                );
+              },
+              child: Text(
+                "Check Answers",
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.2,
+                      decoration: TextDecoration.underline,
+                    ),
               ),
             ),
             SizedBox(
