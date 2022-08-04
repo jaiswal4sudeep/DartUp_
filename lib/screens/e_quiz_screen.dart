@@ -24,7 +24,7 @@ class QuizScreen extends ConsumerStatefulWidget {
 
 class HomeViewState extends ConsumerState<QuizScreen> {
   int currentQuestion = 0;
-  // late Timer timer;
+  late Timer timer;
   int maxSec = 15;
   late int currentSec;
   int selectedOption = 0;
@@ -35,34 +35,35 @@ class HomeViewState extends ConsumerState<QuizScreen> {
   late String optFileIndex;
 
   List<int> selectedOptionByUser = [];
+  List<int> timeTakenByUser = [];
 
-  // void startTimer() {
-  //   timer = Timer.periodic(
-  //     const Duration(seconds: 1),
-  //     (Timer timer) {
-  //       if (currentSec == 0) {
-  //         setState(() {
-  //           timer.cancel();
-  //         });
-  //         if (currentQuestion < quizData['questions'].length - 1) {
-  //           nextQuiz();
-  //         } else {
-  //           closeQuiz();
-  //         }
-  //       } else {
-  //         setState(() {
-  //           currentSec--;
-  //         });
-  //       }
-  //     },
-  //   );
-  // }
+  void startTimer() {
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (Timer timer) {
+        if (currentSec == 0) {
+          setState(() {
+            timer.cancel();
+          });
+          if (currentQuestion < quizData['questions'].length - 1) {
+            nextQuiz();
+          } else {
+            closeQuiz();
+          }
+        } else {
+          setState(() {
+            currentSec--;
+          });
+        }
+      },
+    );
+  }
 
   nextQuiz() {
     userProgressData();
     setState(() {
-      // timer.cancel();
-      // startTimer();
+      timer.cancel();
+      startTimer();
       currentQuestion++;
       isSelected = false;
       selectedOption = 0;
@@ -71,7 +72,7 @@ class HomeViewState extends ConsumerState<QuizScreen> {
   }
 
   closeQuiz() {
-    // timer.cancel();
+    timer.cancel();
     userProgressData();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
@@ -80,6 +81,7 @@ class HomeViewState extends ConsumerState<QuizScreen> {
           selectedOptionsList: selectedOptionByUser,
           noOfQuiz: quizData['questions'].length,
           scriptFile: scriptFile,
+          timeTakenByUser: timeTakenByUser,
         ),
       ),
     );
@@ -98,13 +100,14 @@ class HomeViewState extends ConsumerState<QuizScreen> {
         userScore++;
       });
     }
+    timeTakenByUser.add(maxSec - currentSec);
     selectedOptionByUser.add(selectedOption);
   }
 
   @override
   void initState() {
     currentSec = maxSec;
-    // startTimer();
+    startTimer();
     optFileIndex = widget.selectedOption.toString();
     scriptFile = 'assets/json/$optFileIndex.json';
     super.initState();
@@ -112,7 +115,7 @@ class HomeViewState extends ConsumerState<QuizScreen> {
 
   @override
   void dispose() {
-    // timer.cancel();
+    timer.cancel();
     super.dispose();
   }
 

@@ -9,10 +9,12 @@ class CheckAnswerScreen extends StatelessWidget {
   const CheckAnswerScreen({
     super.key,
     required this.selectedOptionsList,
+    required this.timeTakenByUser,
     required this.scriptFile,
   });
 
   final List<int> selectedOptionsList;
+  final List<int> timeTakenByUser;
   final String scriptFile;
 
   @override
@@ -73,6 +75,7 @@ class CheckAnswerScreen extends StatelessWidget {
                   data: data,
                   qid: index,
                   selectedOptionsList: selectedOptionsList,
+                  timeTakenByUser: timeTakenByUser,
                 );
               },
             );
@@ -89,11 +92,13 @@ class QuestionWidget extends StatelessWidget {
     required this.data,
     required this.qid,
     required this.selectedOptionsList,
+    required this.timeTakenByUser,
   }) : super(key: key);
 
   final data;
   final int qid;
   final List<int> selectedOptionsList;
+  final List<int> timeTakenByUser;
 
   @override
   Widget build(BuildContext context) {
@@ -158,6 +163,44 @@ class QuestionWidget extends StatelessWidget {
                   ),
                 );
               },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 15.w,
+                ),
+                Text(
+                  selectedOptionsList[qid] != 0
+                      ? (data['questions'][qid]['correct_answer'] ==
+                              selectedOptionsList[qid]
+                          ? 'Correct'
+                          : 'Incorrect')
+                      : 'Skipped',
+                  style: Theme.of(context).textTheme.headline4!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.sp,
+                        color: AppConstant.titlecolor.withOpacity(0.8),
+                      ),
+                ),
+                const Spacer(),
+                Icon(
+                  Icons.hourglass_top_rounded,
+                  size: 18.sp,
+                ),
+                SizedBox(
+                  width: 3.w,
+                ),
+                Text(
+                  timeTakenByUser[qid].toString() + 's',
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                        fontSize: 14.sp,
+                      ),
+                ),
+                SizedBox(
+                  width: 3.w,
+                ),
+              ],
             ),
           ],
         ),

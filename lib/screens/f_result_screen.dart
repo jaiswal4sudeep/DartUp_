@@ -12,33 +12,36 @@ class ResultScreen extends HookWidget {
     super.key,
     required this.score,
     required this.selectedOptionsList,
+    required this.timeTakenByUser,
     required this.noOfQuiz,
     required this.scriptFile,
   });
   final int score;
   final List<int> selectedOptionsList;
+  final List<int> timeTakenByUser;
   final int noOfQuiz;
   final String scriptFile;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     late String commitment;
     late String imagePath;
-
+   
     useEffect(() {
-      if (score == 5) {
+      if (score == 10 || score == 9) {
         commitment = 'Excellent';
         imagePath = 'assets/images/5.png';
-      } else if (score == 4) {
+      } else if (score == 8 || score == 7) {
         commitment = 'Awesome';
         imagePath = 'assets/images/4.png';
-      } else if (score == 3) {
+      } else if (score == 6 || score == 5) {
         commitment = 'Good';
         imagePath = 'assets/images/3.png';
-      } else if (score == 2) {
+      } else if (score == 4 || score == 3) {
         commitment = 'Average';
         imagePath = 'assets/images/2.png';
-      } else if (score == 1) {
+      } else if (score == 2 || score == 1) {
         commitment = 'Bad';
         imagePath = 'assets/images/1.png';
       } else {
@@ -61,12 +64,20 @@ class ResultScreen extends HookWidget {
             Icons.close_rounded,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.share_outlined,
+            ),
+          )
+        ],
       ),
       body: Center(
         child: Column(
           children: [
             SizedBox(
-              height: 100.h,
+              height: 120.h,
             ),
             Image.asset(
               imagePath,
@@ -97,7 +108,7 @@ class ResultScreen extends HookWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 3.0),
                   child: Container(
-                    width: score == 0 ? 0 : 60 * score.toDouble() - 6,
+                    width: score == 0 ? 0 : 30 * score.toDouble() - 6,
                     height: 15.h,
                     decoration: BoxDecoration(
                       color: AppConstant.titlecolor,
@@ -108,11 +119,18 @@ class ResultScreen extends HookWidget {
               ),
             ),
             SizedBox(
-              height: 15.h,
+              height: 10.h,
             ),
-            Text(
-              'Total Score : $score/$noOfQuiz',
-              style: Theme.of(context).textTheme.headline3,
+            SizedBox(
+              width: 290,
+              child: Text(
+                '$score/$noOfQuiz',
+                textAlign: TextAlign.right,
+                style: Theme.of(context).textTheme.headline2!.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
             ),
             const Spacer(),
             Center(
@@ -144,6 +162,7 @@ class ResultScreen extends HookWidget {
                     builder: (context) => CheckAnswerScreen(
                       selectedOptionsList: selectedOptionsList,
                       scriptFile: scriptFile,
+                      timeTakenByUser: timeTakenByUser,
                     ),
                   ),
                 );
@@ -158,7 +177,7 @@ class ResultScreen extends HookWidget {
               ),
             ),
             SizedBox(
-              height: 30.h,
+              height: 20.h,
             ),
           ],
         ),
