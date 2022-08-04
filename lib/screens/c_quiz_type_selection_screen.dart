@@ -14,6 +14,7 @@ class QuizTyepSelectionScreen extends StatefulWidget {
 
 class _QuizTyepSelectionScreenState extends State<QuizTyepSelectionScreen> {
   int selectedOption = 0;
+  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,7 @@ class _QuizTyepSelectionScreenState extends State<QuizTyepSelectionScreen> {
                         onChanged: (val) {
                           setState(() {
                             selectedOption = val!;
+                            isSelected = true;
                           });
                         },
                         activeColor: AppConstant.titlecolor,
@@ -65,6 +67,7 @@ class _QuizTyepSelectionScreenState extends State<QuizTyepSelectionScreen> {
                         onChanged: (val) {
                           setState(() {
                             selectedOption = val!;
+                            isSelected = true;
                           });
                         },
                         activeColor: AppConstant.titlecolor,
@@ -82,6 +85,7 @@ class _QuizTyepSelectionScreenState extends State<QuizTyepSelectionScreen> {
                         onChanged: (val) {
                           setState(() {
                             selectedOption = val!;
+                            isSelected = true;
                           });
                         },
                         activeColor: AppConstant.titlecolor,
@@ -120,6 +124,7 @@ class _QuizTyepSelectionScreenState extends State<QuizTyepSelectionScreen> {
                         onChanged: (val) {
                           setState(() {
                             selectedOption = val!;
+                            isSelected = true;
                           });
                         },
                         activeColor: AppConstant.titlecolor,
@@ -137,6 +142,7 @@ class _QuizTyepSelectionScreenState extends State<QuizTyepSelectionScreen> {
                         onChanged: (val) {
                           setState(() {
                             selectedOption = val!;
+                            isSelected = true;
                           });
                         },
                         activeColor: AppConstant.titlecolor,
@@ -154,6 +160,7 @@ class _QuizTyepSelectionScreenState extends State<QuizTyepSelectionScreen> {
                         onChanged: (val) {
                           setState(() {
                             selectedOption = val!;
+                            isSelected = true;
                           });
                         },
                         activeColor: AppConstant.titlecolor,
@@ -174,15 +181,17 @@ class _QuizTyepSelectionScreenState extends State<QuizTyepSelectionScreen> {
                 width: width * 0.8,
                 height: 40.h,
                 child: CustomButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => CountDownScreen(
-                          selectedOption: selectedOption,
-                        ),
-                      ),
-                    );
-                  },
+                  onPressed: isSelected
+                      ? () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => CountDownScreen(
+                                selectedOption: selectedOption,
+                              ),
+                            ),
+                          );
+                        }
+                      : null,
                   title: 'START NOW',
                 ),
               ),

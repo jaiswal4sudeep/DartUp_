@@ -13,7 +13,7 @@
         },
         
         {
-            "qid": 3,
+            "qid": 2,
             "question": "Flutter supports cross platform development",
             "options": [
                 "False",
@@ -22,19 +22,19 @@
             "correct_answer": 2
         },
         {
-            "qid": 4,
+            "qid": 3,
             "question": "Which of these components is not a built-in widget of Flutter?",
             "options": [
                 "FloatingButton",
                 "AppBar",
                 "TextTransformer",
-                " TextStyle"
+                "TextStyle"
             ],
             "correct_answer": 3
         },
         
         {
-            "qid": 3,
+            "qid": 4,
             "question": "Which of the following properties must we utilize for adding the label, inline, and icon suggestion text to the TextField widget?",
             "options": [
                 "InputDecoration",
@@ -46,66 +46,64 @@
         },
         {
             "qid": 5,
-            "question": "What types of tests can you perform in Flutter?",
+            "question": "How to fix following error in Flutter?\nA RenderFlex overflowed by...",
             "options": [
-                "Unit Tests",
-                "Widget Tests",
-                "Integration Tests",
-                "All of the above"
+                "By removing relevent error-causing widget",
+                "By wrapping up the relevent error-causing widget with expanded widget",
+                "By running the command 'flutter clean'",
+                "None of the above"
             ],
-            "correct_answer": 4
+            "correct_answer": 2
         },
         {
             "qid": 6,
-            "question": "What is Flutter?",
+            "question": "What is the correct widget for using image as a icon in flutter?",
             "options": [
-                "Flutter is an open-source DBMS",
-                "Flutter is an open-source UI toolkit",
-                "Flutter is an open-source backend toolkit",
-                "All of the above"
+                "Image(\n  type: icon,\n  child:(...)\n)",
+                "ImageIcon(...)",
+                "IconImage(...)",
+                "None of the above"
             ],
             "correct_answer": 2
         },
         {
             "qid": 7,
-            "question": "Flutter is developed by ________.",
+            "question": "Can we change the state with any widget in stateless widget?",
             "options": [
-                "Microsoft",
-                "Facebook",
-                "Google",
-                "IBM"
+                "No",
+                "Yes"
+            ],
+            "correct_answer": 2
+        },
+        {
+            "qid": 8,
+            "question": "Which of the following is not a type of http request?",
+            "options": [
+                "put",
+                "delete",
+                "update",
+                "All of the above"
             ],
             "correct_answer": 3
         },
         {
-            "qid": 8,
-            "question": "What are the advantages of Flutter?",
-            "options": [
-                "Cross-platform Development",
-                "Faster Development",
-                "UI Focused",
-                "All of the above"
-            ],
-            "correct_answer": 4
-        },
-        {
             "qid": 9,
-            "question": "How many types of widgets are there in Flutter?",
+            "question": "Which of the following is not a type of widget lifecycle method?",
             "options": [
-                "2",
-                "3",
-                "4",
-                "5"
+                "didUpdateState()",
+                "didUpdateWidget()",
+                "didChangeDependencies()",
+                "deactivate()"
             ],
             "correct_answer": 1
         },
         {
             "qid": 10,
-            "question": "What types of tests can you perform in Flutter?",
+            "question": "What do you understand about BuildContext in flutter?",
             "options": [
-                "Unit Tests",
-                "Widget Tests",
-                "Integration Tests",
+                "Each BuildContext is unique to a widget.",
+                "BuildContext is a locator that is used to track each widget in a tree and locate them and their position in the tree.",
+                "The BuildContext of each widget is passed to their build method.",
                 "All of the above"
             ],
             "correct_answer": 4

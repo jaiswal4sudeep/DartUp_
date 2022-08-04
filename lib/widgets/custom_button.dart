@@ -11,7 +11,7 @@ class CustomButton extends StatelessWidget {
     this.textColor = AppConstant.backgroundColor,
   }) : super(key: key);
 
-  final void Function() onPressed;
+  final void Function()? onPressed;
   final String title;
   final Color? bgColor;
   final Color? textColor;
