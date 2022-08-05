@@ -7,6 +7,7 @@ import 'package:task/utils/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
   await SharedPreferences.getInstance();
   runApp(
     const ProviderScope(
